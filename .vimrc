@@ -39,7 +39,6 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'leafgarland/typescript-vim'
 Plugin 'tpope/vim-surround'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
@@ -47,6 +46,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'pangloss/vim-javascript'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'leafgarland/typescript-vim'
+Plugin 'ElmCast/elm-vim'
 " Markdown
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
@@ -83,6 +83,10 @@ set breakindent
 set belloff=all
 set autoread
 set noswapfile
+set wildmenu
+set incsearch
+set hls
+set nu
 
 syntax enable
 
@@ -95,6 +99,9 @@ let g:indent_guides_enable_on_vim_startup = 1
 " Start NERDTree on opening vim into a directory
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+
+" Ctrl P Config
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,node_modules
 
 " Keyboard Shortcut Config
 :nnoremap <F5> "=strftime("%c")<CR>P
