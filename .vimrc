@@ -37,6 +37,7 @@ Plugin 'reedes/vim-colors-pencil'
 " Editor
 Plugin 'airblade/vim-gitgutter'
 Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'https://github.com/Yggdroot/indentLine.git'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-surround'
@@ -53,6 +54,12 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'dhruvasagar/vim-table-mode'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'junegunn/goyo.vim'
+" Plugin 'https://github.com/rlue/vim-getting-things-down.git'
+
+Plugin 'https://github.com/vim-scripts/utl.vim.git'
+
+" OrgMode
+Plugin 'https://github.com/jceb/vim-orgmode.git'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -76,6 +83,7 @@ set expandtab
 set shiftwidth=2
 set tabstop=2
 set smartindent
+set foldcolumn=5
 
 set linebreak
 set breakindent
@@ -88,12 +96,16 @@ set incsearch
 set hls
 set nu
 
+set ignorecase
+"set spelllang=en-us
+
 syntax enable
 
 " Indent Guide Configuration
-let g:indent_guides_guide_size = 1
-let g:indent_guides_color_change_percent = 3
-let g:indent_guides_enable_on_vim_startup = 1
+" let g:indent_guides_guide_size = 0
+" let g:indent_guides_color_change_percent = 3
+" let g:indent_guides_enable_on_vim_startup = 1
+
 
 " NERDTree Config
 " Start NERDTree on opening vim into a directory
@@ -102,6 +114,29 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in
 
 " Ctrl P Config
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,node_modules
+let g:ctrlp_working_path_mode = 'c'
+
+" Vim-Markdown Config
+let g:vim_markdown_new_list_item_indent = 2
+let g:vim_markdown_autowrite = 1
+let g:vim_markdown_conceal = 0
+
+
+" Syntastic Recommended Config https://github.com/vim-syntastic/syntastic#3-recommended-settings 
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+" More Syntastic Config
+let g:syntastic_html_tidy_ignore_errors=[
+    \'proprietary attribute "ng-',
+    \'proprietary attribute "pdk-'
+    \
+\]
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 " Keyboard Shortcut Config
 :nnoremap <F5> "=strftime("%c")<CR>P
@@ -111,4 +146,12 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,node_modules
 colorscheme badwolf
 let g:badwolf_darkgutter = 1
 
+" Font
+if has ("gui_running")
+  if has ("gui_gtk2")
+    :set guifont=Courier\ New\ 10
+  elseif has ("gui_win32")
+    :set guifont=Courier_New:h10:cANSI
+  endif
+endif
 
